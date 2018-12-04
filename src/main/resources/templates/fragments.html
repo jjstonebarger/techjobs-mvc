@@ -27,5 +27,33 @@
     </div>
 </div>
 
+<div th:fragment="search-results" th:if="${jobs} and ${jobs.size()}">
+    <table class="job-listing">
+        <tr>
+            <td>Postion Type</td>
+            <td>Postion Title</td>
+            <td>Employer</td>
+            <td>Location</td>
+            <td>Skills</td>
+        </tr>
+
+        <tr th:each="job, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
+            <td th:each="aJob : ${job}"><a th:href="@{/search/results(value=${job})}" th:text="${aJob.value}"></a></td>
+        </tr>
+    </table>
+</div>
+
+<div th:fragment="search-results_2" th:if="${jobs}">
+    <h2 th:text="${jobs.size()}+ ' Result(s)'"></h2>
+
+    <table class="job-listing" th:each="job, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
+        <tr th:each="aJob : ${job}" th:href="@{/search/results(value=${job})}">
+            <td class="bold" th:text="${#strings.capitalizeWords(aJob.key)}"></td>
+            <td th:text="${aJob.value}"></td>
+        </tr>
+        <hr/>
+    </table>
+</div>
+
 </body>
 </html>

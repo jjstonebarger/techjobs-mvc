@@ -27,3 +27,7 @@ table.job-listing td:last-child {
 label {
     margin-right: 15px;
 }
+
+td.bold {
+    font-weight:bold;
+}
